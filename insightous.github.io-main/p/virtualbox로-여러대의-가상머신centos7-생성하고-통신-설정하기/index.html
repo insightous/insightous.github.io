@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='windows 10 환경에서 작업.
+'>
+<title>VirtualBox로 여러대의 가상머신(CentOS7) 생성하고, 통신 설정하기</title>
+
+<link rel='canonical' href='https://insightous.github.io/p/virtualbox%EB%A1%9C-%EC%97%AC%EB%9F%AC%EB%8C%80%EC%9D%98-%EA%B0%80%EC%83%81%EB%A8%B8%EC%8B%A0centos7-%EC%83%9D%EC%84%B1%ED%95%98%EA%B3%A0-%ED%86%B5%EC%8B%A0-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='VirtualBox로 여러대의 가상머신(CentOS7) 생성하고, 통신 설정하기'>
+<meta property='og:description' content='windows 10 환경에서 작업.
+'>
+<meta property='og:url' content='https://insightous.github.io/p/virtualbox%EB%A1%9C-%EC%97%AC%EB%9F%AC%EB%8C%80%EC%9D%98-%EA%B0%80%EC%83%81%EB%A8%B8%EC%8B%A0centos7-%EC%83%9D%EC%84%B1%ED%95%98%EA%B3%A0-%ED%86%B5%EC%8B%A0-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/'>
+<meta property='og:site_name' content='공부하고 기록하고'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='VirtualBox' /><meta property='article:tag' content='CentOS' /><meta property='article:tag' content='' /><meta property='article:tag' content='' /><meta property='article:published_time' content='2022-06-30T14:00:56&#43;09:00'/><meta property='article:modified_time' content='2022-07-01T11:44:56&#43;09:00'/>
+<meta name="twitter:title" content="VirtualBox로 여러대의 가상머신(CentOS7) 생성하고, 통신 설정하기">
+<meta name="twitter:description" content="windows 10 환경에서 작업.
+">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hud7742dacb6dd1a068e3b75cbf28a5648_59475_300x0_resize_q75_box.jpg" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">공부하고 기록하고</a></h1>
+            <h2 class="site-description">Study and Log</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/insightous'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9.34 6.372.05.105 5.56 14.5a.755.755 0 0 1-.418.971.73.73 0 0 1-.91-.333l-.043-.092-1.433-3.737H5.06l-.094-.006-1.546 3.76a.73.73 0 0 1-.963.401.754.754 0 0 1-.427-.885l.033-.096 5.964-14.5a.73.73 0 0 1 1.314-.088Zm9.406-4.37a.75.75 0 0 1 .743.65l.007.1V7.5h1.75a.75.75 0 0 1 .743.649l.007.102a.75.75 0 0 1-.648.743L21.245 9l-1.75-.001v7.25a.75.75 0 0 1-.648.744l-.102.007a.75.75 0 0 1-.743-.648l-.007-.102V2.753a.75.75 0 0 1 .75-.75ZM8.81 8.748 5.65 16.286h6.11L8.81 8.747Zm1.937-6.744h5.498a.75.75 0 0 1 .743.648l.006.102v3.004c0 2.344-1.9 4.245-4.245 4.245a.75.75 0 0 1 0-1.5c1.46 0 2.654-1.14 2.74-2.578l.005-.167V3.503h-4.747a.75.75 0 0 1-.102-1.493l.102-.007h5.498-5.498Z" fill="#bbbbbb" class="fill-212121"></path></svg>
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://insightous.github.io/" selected>Korean</option>
+                        
+                            <option value="https://insightous.github.io/en/" >English</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>다크 모드</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#virtualbox-설치">VirtualBox 설치</a></li>
+    <li><a href="#centos7-이미지-다운로드">CentOS7 이미지 다운로드</a></li>
+    <li><a href="#centos-7-가상머신-생성">CentOS 7 가상머신 생성</a></li>
+    <li><a href="#네트워크-설정">네트워크 설정</a></li>
+    <li><a href="#네트워크-통신-확인--ssh-접속">네트워크 통신 확인 &amp; ssh 접속</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/work/" >
+                work
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/virtualbox%EB%A1%9C-%EC%97%AC%EB%9F%AC%EB%8C%80%EC%9D%98-%EA%B0%80%EC%83%81%EB%A8%B8%EC%8B%A0centos7-%EC%83%9D%EC%84%B1%ED%95%98%EA%B3%A0-%ED%86%B5%EC%8B%A0-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/">VirtualBox로 여러대의 가상머신(CentOS7) 생성하고, 통신 설정하기</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 30, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>windows 10 환경에서 작업.</p>
+<h2 id="virtualbox-설치">VirtualBox 설치</h2>
+<p>VirtualBox는 Windows 환경에서 다른 운영체제를 사용할 수 있게 해주는 소프트웨어이다.<br>
+설치: <a class="link" href="https://www.virtualbox.org/wiki/Downloads"  target="_blank" rel="noopener"
+    >VirtualBox install</a></p>
+<h2 id="centos7-이미지-다운로드">CentOS7 이미지 다운로드</h2>
+<p><a class="link" href="https://www.centos.org/download/"  target="_blank" rel="noopener"
+    >CentOS 다운로드 페이지</a><br>
+본인의 pc 환경에 맞게 선택 &gt; 여러 다운로드 링크<br>
+<img src="/work-tools/centos-download.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="CentOS 링크들"
+	
+	
+><br>
+<img src="/work-tools/centos-download2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="centos7 설치 버전들"
+	
+	
+><br>
+<strong>주로 <code>CentOS-7-x86_64-Minimal-2009.iso</code>으로 설치</strong></p>
+<h2 id="centos-7-가상머신-생성">CentOS 7 가상머신 생성</h2>
+<p>새로 만들기 &gt; 이름,저장위치 설정. 종류: Linux. 버전: Red Hat(64-bit) &gt; 메모리 설정 &gt; 새 가상 하드 디스크 만들기 &gt; VDI 선택 &gt; 고정 크기 선택 &gt; 만들기<br>
+<img src="/work-tools/virtualbox01.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="virtualbox"
+	
+	
+><br>
+<em>여러 설정들을 필요에 맞게 설정하면 된다</em></p>
+<p>이미지 선택 <br>
+<img src="/work-tools/CentOS7-start.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="virtualbox"
+	
+	
+></p>
+<p>영어 선택<br>
+<img src="/work-tools/centos7-install01.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="virtualbox-install01"
+	
+	
+></p>
+<p>네트워크 설정: 이 설정을 꼭 해야 편하게 인터넷 연결을 할 수 있다. <em>다른 설정을 알아서 하면 된다.</em><br>
+<img src="/work-tools/centos7-installnetwork.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="virtualbox-installnetwork"
+	
+	
+><br>
+<img src="/work-tools/centos7-installnetwork2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="virtualbox-installnetwork"
+	
+	
+></p>
+<p><code>Begin installation</code><br>
+<code>ROOT PASSWORD</code>와 <code>USER CREATION</code> 설정을 한다.<br>
+<img src="/work-tools/centos7-installreboot.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="virtualbox-installnetwork"
+	
+	
+></p>
+<h2 id="네트워크-설정">네트워크 설정</h2>
+<p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbZWd94%2FbtqvPMRj0TS%2Fwy4BslvT0UE75QyAaCdyi0%2Fimg.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="virtual box 네트워크 종류"
+	
+	
+><br>
+출처: <a class="link" href="https://cjwoov.tistory.com/11"  target="_blank" rel="noopener"
+    >코덕 개발자 노트 블로그</a></p>
+<p>내가 필요한 설정은 <code>NAT 네트워크</code> 설정이다.</p>
+<ul>
+<li>Host pc에서 가상머신으로 통신할 수 있어야 하고,</li>
+<li>가상 머신 사이 통신이 가능해야 하고,</li>
+<li>가상 머신에서 인터넷 통신이 가능해야 한다.(이 부분은 CentOS7 설치 과정에서 설정함으로써 기본 설정인 NAT이 되기 때문에 따로 설정할 필요 없다.)</li>
+</ul>
+<p>먼저, <code>머신 &gt; 설정 &gt; 네트워크 &gt; NAT 네트워크</code> 설정을 한다.<br>
+<img src="/work-tools/virtualbox-network01.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="virtualbox network config"
+	
+	
+></p>
+<p>다음, 파일 &gt; 환경 설정 &gt; 네트워크 &gt; NAT 네트워크 &gt; 활성화 &gt; 네트워크 편집 &gt; 포트 포워딩 &gt; 포트 설정<br>
+<img src="/work-tools/virtualbox-network02.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="virtualbox network config"
+	
+	
+></p>
+<ul>
+<li>
+<p>Host PC(Windows 10)에서 가상 머신으로 접속할 때는 <code>192.168.56.1</code> ip를 사용한다.</p>
+</li>
+<li>
+<p>가상머신이 여러 대인 경우: 포트를 다르게 설정해서 각 가상 머신에 접속한다. 이미지의 Rule 2, Rule 3 부분</p>
+</li>
+<li>
+<p>가상머신의 서비스(eg: MySQL) 접속할 경우. 포트 포워딩 설정을 해준다. 이미지의 Rule 4, Rule 5 부분</p>
+</li>
+<li>
+<p>가상 머신 사이에 통신은 각 머신에서 <code>ifconfig</code>를 통해 확인한 ip로 통신하게 된다. <code>net-tools</code> 설치하여 <code>ifconfig</code>를 사용할 수 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo yum install -y net-tools
+</span></span><span class="line"><span class="cl">ifconfig
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>가상 머신 사이에서는 <code>ifconfig</code> 결과로 알 수 있는 <code>inet</code>주소로 통신한다.
+<img src="/work-tools/virtualbox-ifconfig.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="virtualbox network config"
+	
+	
+></li>
+</ul>
+<blockquote>
+<p>참고: username을 sudoers에 추가</p>
+<ul>
+<li>root로 전환
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>temp@test ~<span class="o">]</span>$ su
+</span></span><span class="line"><span class="cl">Password:
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@test temp<span class="o">]</span><span class="c1"># vi /etc/sudoers</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li><code>/etc/sudoers</code>에 추가
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## Allow root to run any commands anywhere</span>
+</span></span><span class="line"><span class="cl">root    <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span>       ALL
+</span></span><span class="line"><span class="cl">username    <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span>       ALL
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="네트워크-통신-확인--ssh-접속">네트워크 통신 확인 &amp; ssh 접속</h2>
+<ul>
+<li>Host PC에서 가상 머신 접속: 위에서 포트 포워딩을 한 것을 참고하여 접속
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">PS </span><span class="n">C:</span><span class="p">\</span><span class="n">Users</span><span class="p">&gt;</span> <span class="n">ssh</span> <span class="n">temp</span><span class="nv">@192</span><span class="p">.</span><span class="py">168</span><span class="p">.</span><span class="py">56</span><span class="p">.</span><span class="py">1</span> <span class="n">-p2223</span>
+</span></span><span class="line"><span class="cl"><span class="n">temp</span><span class="nv">@192</span><span class="p">.</span><span class="py">168</span><span class="p">.</span><span class="py">56</span><span class="p">.</span><span class="mf">1</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">password</span><span class="err">:</span>
+</span></span><span class="line"><span class="cl"><span class="n">Last</span> <span class="n">login</span><span class="err">:</span> <span class="n">Thu</span> <span class="n">Jun</span> <span class="mf">30</span> <span class="mf">02</span><span class="err">:</span><span class="mf">52</span><span class="err">:</span><span class="mf">13</span> <span class="mf">2022</span> <span class="n">from</span> <span class="mf">192.168</span><span class="p">.</span><span class="py">56</span><span class="p">.</span><span class="py">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">temp</span><span class="nv">@test</span> <span class="p">~]$</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>가상 머신 사이에서 통신: ping으로 확인
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>temp@test ~<span class="o">]</span>$ ping 10.0.2.5
+</span></span><span class="line"><span class="cl">PING 10.0.2.5 <span class="o">(</span>10.0.2.5<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.0.2.5: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>1.16 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.0.2.5: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>3.17 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.0.2.5: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.647 ms
+</span></span><span class="line"><span class="cl">^C
+</span></span><span class="line"><span class="cl">--- 10.0.2.5 ping statistics ---
+</span></span><span class="line"><span class="cl"><span class="m">3</span> packets transmitted, <span class="m">3</span> received, 0% packet loss, <span class="nb">time</span> 2004ms
+</span></span><span class="line"><span class="cl">rtt min/avg/max/mdev <span class="o">=</span> 0.647/1.660/3.171/1.089 ms
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<blockquote>
+<p>가상 머신을 복제해서 사용한 경우
+가상 머신 ip가 똑같이 생성될 수 있다. 동적으로 ip를 설정하므로, <code>reboot</code>을 한 번 해주면 된다.</p>
+</blockquote>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/virtualbox/">VirtualBox</a>
+        
+            <a href="/tags/centos/">CentOS</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            마지막 수정:  Jul 01, 2022 11:44 KST
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%BE%B8%EB%AF%B8%EA%B8%B0-%EB%A6%AC%EC%86%8C%EC%8A%A4/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">블로그 꾸미기 리소스</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/percona-mysql-%EC%84%A4%EC%B9%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Percona MySQL 설치</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/docker-docker-compose-%EC%84%A4%EC%B9%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker, Docker Compose 설치</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/vs-code%EC%9D%98-bracket-pair-colorizer-2%EA%B0%80-deprecated-%EB%90%98%EC%97%88%EB%8B%A4./">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">VS Code의 `Bracket Pair Colorizer 2`가 deprecated 되었다.</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/vs-codevisual-studio-code%EB%A5%BC-editor%EB%A1%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">VS code(Visual Studio Code)를 editor로 사용하기</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="insightous/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2022 - 
+        
+        2023 공부하고 기록하고
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

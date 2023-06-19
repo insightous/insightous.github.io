@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>ssh on 공부하고 기록하고</title>
+        <link>https://insightous.github.io/tags/ssh/</link>
+        <description>Recent content in ssh on 공부하고 기록하고</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Fri, 17 Jun 2022 16:24:29 +0900</lastBuildDate><atom:link href="https://insightous.github.io/tags/ssh/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ssh로 GitHub 연결하기</title>
+        <link>https://insightous.github.io/p/ssh%EB%A1%9C-github-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0/</link>
+        <pubDate>Fri, 17 Jun 2022 16:24:29 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/p/ssh%EB%A1%9C-github-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0/</guid>
+        <description>&lt;p&gt;windows 10 환경에서 작업.&lt;/p&gt;
+&lt;h2 id=&#34;ssh-키를-생성해준다&#34;&gt;SSH 키를 생성해준다.&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GitHub-Generate new SSH key&lt;/a&gt;을 참고한다.&lt;br&gt;
+&lt;em&gt;PowerShell에서도 작업 가능하다.&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;ssh-keygen&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ed25519&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-C&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;your_email@example.com&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-f&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;.ssh/filename&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ed25519&lt;/code&gt;는 암호화 알고리즘 중 하나이다. 보통 &lt;code&gt;rsa&lt;/code&gt;알고리즘을 사용한다.&lt;/li&gt;
+&lt;li&gt;보통 &lt;code&gt;C:\Users\username\.ssh&lt;/code&gt; 디렉토리를 생성에 이 곳에 파일들을 저장한다.&lt;br&gt;
+&lt;em&gt;리눅스에서는 자동으로 &lt;code&gt;/home/username/.ssh&lt;/code&gt; 디렉토리가 자동 생성되고 이 곳에 파일을 저장됐던 것 같다&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;설정한 디렉토리에 &lt;code&gt;filename&lt;/code&gt;과 &lt;code&gt;filename.pub&lt;/code&gt; 두 파일이 생성된다.
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;filename&lt;/code&gt;이 private키 이고, &lt;code&gt;filename.pub&lt;/code&gt;이 public키 이다.&lt;/li&gt;
+&lt;li&gt;private 키, public 키 설명: &lt;a class=&#34;link&#34; href=&#34;https://ko.wikipedia.org/wiki/%EA%B3%B5%EA%B0%9C_%ED%82%A4_%EC%95%94%ED%98%B8_%EB%B0%A9%EC%8B%9D#/media/%ED%8C%8C%EC%9D%BC:Public_key_encryption.svg&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;위키피디아: 공개키 암호방식 이미지&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;github에-public키를-저장&#34;&gt;GitHub에 public키를 저장&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Settings &amp;gt; SSH and GPG keys &amp;gt; SSH keys &amp;gt; New SSH key&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;식별하기 위한 Title을 지정하고, public키 파일을 열어 내용을 복사 붙여넣기 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;github을-여러-계정-사용하는-경우&#34;&gt;GitHub을 여러 계정 사용하는 경우&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;각 GitHub에 위의 과정을 각각 진행한다.&lt;/li&gt;
+&lt;li&gt;두 계정은 다른 키 파일들을 사용해야 한다. &lt;em&gt;같은 파일 사용하려 했지만 GitHub에 등록되지 않는다. GitHub에서 unique 검증을 하는 것이라고 추측중&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ssh-config-설정&#34;&gt;ssh config 설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;C:\Users\username\.ssh&lt;/code&gt; 디렉토리에 &lt;code&gt;config&lt;/code&gt; 파일을 생성한다. &lt;em&gt;확장자는 없다&lt;/em&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# Default GitHub username1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host github.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  HostName github.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  IdentityFile ~./ssh/filename1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  User git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# username2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host github.com-username2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  HostName github.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  IdentityFile C:\Users\username\.ssh\filename2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  User git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Host를 다르게 설정, 식별가능하게 함.&lt;/li&gt;
+&lt;li&gt;HostName은 접속하려는 host를 작성.&lt;/li&gt;
+&lt;li&gt;IdentityFile은 ssh 접속시 사용하는 private 파일을 설정.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ssh-config-설정을-기반으로-프로세스-이해&#34;&gt;ssh config 설정을 기반으로 프로세스 이해&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;git remote나 git clone을 할 경우&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Default로 설정한 git config의 Host 때문에 &lt;code&gt;git@github.com:username1/repo.git&lt;/code&gt;로 remote/clone을 하면 된다.&lt;/li&gt;
+&lt;li&gt;username2에서는 git config의 Host 때문에 &lt;code&gt;git@github.com-username2:username2/repo.git&lt;/code&gt;로 remote/clone 하면 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;즉, remote/clone 시 사용하는 주소를 통해 -&amp;gt; ssh config 파일을 바탕으로 -&amp;gt; 접속 방법을 설정하게 된다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;참고 사이트&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://velog.io/@sonypark/GitHubSSH%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EC%97%AC%EB%9F%AC%EA%B0%9C%EC%9D%98-%EA%B9%83%ED%97%88%EB%B8%8C-%EA%B3%84%EC%A0%95-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-6mk3iesh0u&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;sonypark.log님의 블로그&lt;/a&gt;&lt;/p&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

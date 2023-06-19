@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>VirtualBox on 공부하고 기록하고</title>
+        <link>https://insightous.github.io/tags/virtualbox/</link>
+        <description>Recent content in VirtualBox on 공부하고 기록하고</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Thu, 30 Jun 2022 14:00:56 +0900</lastBuildDate><atom:link href="https://insightous.github.io/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>VirtualBox로 여러대의 가상머신(CentOS7) 생성하고, 통신 설정하기</title>
+        <link>https://insightous.github.io/p/virtualbox%EB%A1%9C-%EC%97%AC%EB%9F%AC%EB%8C%80%EC%9D%98-%EA%B0%80%EC%83%81%EB%A8%B8%EC%8B%A0centos7-%EC%83%9D%EC%84%B1%ED%95%98%EA%B3%A0-%ED%86%B5%EC%8B%A0-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/</link>
+        <pubDate>Thu, 30 Jun 2022 14:00:56 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/p/virtualbox%EB%A1%9C-%EC%97%AC%EB%9F%AC%EB%8C%80%EC%9D%98-%EA%B0%80%EC%83%81%EB%A8%B8%EC%8B%A0centos7-%EC%83%9D%EC%84%B1%ED%95%98%EA%B3%A0-%ED%86%B5%EC%8B%A0-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/</guid>
+        <description>&lt;p&gt;windows 10 환경에서 작업.&lt;/p&gt;
+&lt;h2 id=&#34;virtualbox-설치&#34;&gt;VirtualBox 설치&lt;/h2&gt;
+&lt;p&gt;VirtualBox는 Windows 환경에서 다른 운영체제를 사용할 수 있게 해주는 소프트웨어이다.&lt;br&gt;
+설치: &lt;a class=&#34;link&#34; href=&#34;https://www.virtualbox.org/wiki/Downloads&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;VirtualBox install&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;centos7-이미지-다운로드&#34;&gt;CentOS7 이미지 다운로드&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.centos.org/download/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CentOS 다운로드 페이지&lt;/a&gt;&lt;br&gt;
+본인의 pc 환경에 맞게 선택 &amp;gt; 여러 다운로드 링크&lt;br&gt;
+&lt;img src=&#34;https://insightous.github.io/work-tools/centos-download.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;CentOS 링크들&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://insightous.github.io/work-tools/centos-download2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;centos7 설치 버전들&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;strong&gt;주로 &lt;code&gt;CentOS-7-x86_64-Minimal-2009.iso&lt;/code&gt;으로 설치&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;centos-7-가상머신-생성&#34;&gt;CentOS 7 가상머신 생성&lt;/h2&gt;
+&lt;p&gt;새로 만들기 &amp;gt; 이름,저장위치 설정. 종류: Linux. 버전: Red Hat(64-bit) &amp;gt; 메모리 설정 &amp;gt; 새 가상 하드 디스크 만들기 &amp;gt; VDI 선택 &amp;gt; 고정 크기 선택 &amp;gt; 만들기&lt;br&gt;
+&lt;img src=&#34;https://insightous.github.io/work-tools/virtualbox01.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;virtualbox&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;em&gt;여러 설정들을 필요에 맞게 설정하면 된다&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;이미지 선택 &lt;br&gt;
+&lt;img src=&#34;https://insightous.github.io/work-tools/CentOS7-start.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;virtualbox&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;영어 선택&lt;br&gt;
+&lt;img src=&#34;https://insightous.github.io/work-tools/centos7-install01.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;virtualbox-install01&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;네트워크 설정: 이 설정을 꼭 해야 편하게 인터넷 연결을 할 수 있다. &lt;em&gt;다른 설정을 알아서 하면 된다.&lt;/em&gt;&lt;br&gt;
+&lt;img src=&#34;https://insightous.github.io/work-tools/centos7-installnetwork.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;virtualbox-installnetwork&#34;
+	
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://insightous.github.io/work-tools/centos7-installnetwork2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;virtualbox-installnetwork&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Begin installation&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;ROOT PASSWORD&lt;/code&gt;와 &lt;code&gt;USER CREATION&lt;/code&gt; 설정을 한다.&lt;br&gt;
+&lt;img src=&#34;https://insightous.github.io/work-tools/centos7-installreboot.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;virtualbox-installnetwork&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;네트워크-설정&#34;&gt;네트워크 설정&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbZWd94%2FbtqvPMRj0TS%2Fwy4BslvT0UE75QyAaCdyi0%2Fimg.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;virtual box 네트워크 종류&#34;
+	
+	
+&gt;&lt;br&gt;
+출처: &lt;a class=&#34;link&#34; href=&#34;https://cjwoov.tistory.com/11&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;코덕 개발자 노트 블로그&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;내가 필요한 설정은 &lt;code&gt;NAT 네트워크&lt;/code&gt; 설정이다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Host pc에서 가상머신으로 통신할 수 있어야 하고,&lt;/li&gt;
+&lt;li&gt;가상 머신 사이 통신이 가능해야 하고,&lt;/li&gt;
+&lt;li&gt;가상 머신에서 인터넷 통신이 가능해야 한다.(이 부분은 CentOS7 설치 과정에서 설정함으로써 기본 설정인 NAT이 되기 때문에 따로 설정할 필요 없다.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;먼저, &lt;code&gt;머신 &amp;gt; 설정 &amp;gt; 네트워크 &amp;gt; NAT 네트워크&lt;/code&gt; 설정을 한다.&lt;br&gt;
+&lt;img src=&#34;https://insightous.github.io/work-tools/virtualbox-network01.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;virtualbox network config&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;다음, 파일 &amp;gt; 환경 설정 &amp;gt; 네트워크 &amp;gt; NAT 네트워크 &amp;gt; 활성화 &amp;gt; 네트워크 편집 &amp;gt; 포트 포워딩 &amp;gt; 포트 설정&lt;br&gt;
+&lt;img src=&#34;https://insightous.github.io/work-tools/virtualbox-network02.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;virtualbox network config&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Host PC(Windows 10)에서 가상 머신으로 접속할 때는 &lt;code&gt;192.168.56.1&lt;/code&gt; ip를 사용한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;가상머신이 여러 대인 경우: 포트를 다르게 설정해서 각 가상 머신에 접속한다. 이미지의 Rule 2, Rule 3 부분&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;가상머신의 서비스(eg: MySQL) 접속할 경우. 포트 포워딩 설정을 해준다. 이미지의 Rule 4, Rule 5 부분&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;가상 머신 사이에 통신은 각 머신에서 &lt;code&gt;ifconfig&lt;/code&gt;를 통해 확인한 ip로 통신하게 된다. &lt;code&gt;net-tools&lt;/code&gt; 설치하여 &lt;code&gt;ifconfig&lt;/code&gt;를 사용할 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo yum install -y net-tools
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ifconfig
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;가상 머신 사이에서는 &lt;code&gt;ifconfig&lt;/code&gt; 결과로 알 수 있는 &lt;code&gt;inet&lt;/code&gt;주소로 통신한다.
+&lt;img src=&#34;https://insightous.github.io/work-tools/virtualbox-ifconfig.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;virtualbox network config&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;참고: username을 sudoers에 추가&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;root로 전환
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;temp@test ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;$ su
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Password:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@test temp&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# vi /etc/sudoers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/etc/sudoers&lt;/code&gt;에 추가
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## Allow root to run any commands anywhere&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root    &lt;span class=&#34;nv&#34;&gt;ALL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=(&lt;/span&gt;ALL&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;       ALL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;username    &lt;span class=&#34;nv&#34;&gt;ALL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=(&lt;/span&gt;ALL&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;       ALL
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;네트워크-통신-확인--ssh-접속&#34;&gt;네트워크 통신 확인 &amp;amp; ssh 접속&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Host PC에서 가상 머신 접속: 위에서 포트 포워딩을 한 것을 참고하여 접속
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;PS &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;C:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Users&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ssh&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@192&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;168&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;56&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-p2223&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@192&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;168&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;56&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Last&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;login&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Thu&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Jun&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;30&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;02&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;52&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;13&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;2022&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;192.168&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;56&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;@test&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;~]$&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;가상 머신 사이에서 통신: ping으로 확인
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;temp@test ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;$ ping 10.0.2.5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PING 10.0.2.5 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;10.0.2.5&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; 56&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;84&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; bytes of data.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 10.0.2.5: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1.16 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 10.0.2.5: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;3.17 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 10.0.2.5: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0.647 ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;^C
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--- 10.0.2.5 ping statistics ---
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; packets transmitted, &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; received, 0% packet loss, &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; 2004ms
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rtt min/avg/max/mdev &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 0.647/1.660/3.171/1.089 ms
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;가상 머신을 복제해서 사용한 경우
+가상 머신 ip가 똑같이 생성될 수 있다. 동적으로 ip를 설정하므로, &lt;code&gt;reboot&lt;/code&gt;을 한 번 해주면 된다.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

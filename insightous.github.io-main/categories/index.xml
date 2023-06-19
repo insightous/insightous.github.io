@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Categories on 공부하고 기록하고</title>
+        <link>https://insightous.github.io/categories/</link>
+        <description>Recent content in Categories on 공부하고 기록하고</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Thu, 26 Jan 2023 12:47:29 +0900</lastBuildDate><atom:link href="https://insightous.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>blog</title>
+        <link>https://insightous.github.io/categories/blog/</link>
+        <pubDate>Thu, 26 Jan 2023 12:47:29 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/categories/blog/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>work</title>
+        <link>https://insightous.github.io/categories/work/</link>
+        <pubDate>Mon, 04 Jul 2022 10:07:39 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/categories/work/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>work-tools</title>
+        <link>https://insightous.github.io/categories/work-tools/</link>
+        <pubDate>Tue, 28 Jun 2022 15:21:25 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/categories/work-tools/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>git-github</title>
+        <link>https://insightous.github.io/categories/git-github/</link>
+        <pubDate>Sun, 26 Jun 2022 20:46:00 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/categories/git-github/</guid>
+        <description>&lt;img src="https://insightous.github.io/git-github/git,github_small2.png" alt="Featured image of post git-github" /&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

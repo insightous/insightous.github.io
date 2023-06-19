@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Hugo, GitHub으로 github.io 도메인을 가지는 블로그를 구축'>
+<title>Hugo, GitHub 블로그 구축</title>
+
+<link rel='canonical' href='https://insightous.github.io/p/hugo-github-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95/'>
+
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='Hugo, GitHub 블로그 구축'>
+<meta property='og:description' content='Hugo, GitHub으로 github.io 도메인을 가지는 블로그를 구축'>
+<meta property='og:url' content='https://insightous.github.io/p/hugo-github-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95/'>
+<meta property='og:site_name' content='공부하고 기록하고'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='blog' /><meta property='article:tag' content='Hugo' /><meta property='article:tag' content='GitHub' /><meta property='article:tag' content='git' /><meta property='article:tag' content='submodule' /><meta property='article:published_time' content='2022-06-16T17:20:29&#43;09:00'/><meta property='article:modified_time' content='2022-06-26T12:39:00&#43;09:00'/>
+<meta name="twitter:title" content="Hugo, GitHub 블로그 구축">
+<meta name="twitter:description" content="Hugo, GitHub으로 github.io 도메인을 가지는 블로그를 구축">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="메뉴 여닫기">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hud7742dacb6dd1a068e3b75cbf28a5648_59475_300x0_resize_q75_box.jpg" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">공부하고 기록하고</a></h1>
+            <h2 class="site-description">Study and Log</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/insightous'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9.34 6.372.05.105 5.56 14.5a.755.755 0 0 1-.418.971.73.73 0 0 1-.91-.333l-.043-.092-1.433-3.737H5.06l-.094-.006-1.546 3.76a.73.73 0 0 1-.963.401.754.754 0 0 1-.427-.885l.033-.096 5.964-14.5a.73.73 0 0 1 1.314-.088Zm9.406-4.37a.75.75 0 0 1 .743.65l.007.1V7.5h1.75a.75.75 0 0 1 .743.649l.007.102a.75.75 0 0 1-.648.743L21.245 9l-1.75-.001v7.25a.75.75 0 0 1-.648.744l-.102.007a.75.75 0 0 1-.743-.648l-.007-.102V2.753a.75.75 0 0 1 .75-.75ZM8.81 8.748 5.65 16.286h6.11L8.81 8.747Zm1.937-6.744h5.498a.75.75 0 0 1 .743.648l.006.102v3.004c0 2.344-1.9 4.245-4.245 4.245a.75.75 0 0 1 0-1.5c1.46 0 2.654-1.14 2.74-2.578l.005-.167V3.503h-4.747a.75.75 0 0 1-.102-1.493l.102-.007h5.498-5.498Z" fill="#bbbbbb" class="fill-212121"></path></svg>
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://insightous.github.io/" selected>Korean</option>
+                        
+                            <option value="https://insightous.github.io/en/" >English</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>다크 모드</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">목차</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#hugo">Hugo</a>
+      <ol>
+        <li><a href="#hugo-설치">Hugo 설치</a></li>
+      </ol>
+    </li>
+    <li><a href="#github-git">GitHub, Git</a>
+      <ol>
+        <li><a href="#github-가입--repository-생성">GitHub 가입 &amp; repository 생성</a></li>
+        <li><a href="#git-설치">Git 설치</a></li>
+      </ol>
+    </li>
+    <li><a href="#hugo-blog-생성">hugo blog 생성</a></li>
+    <li><a href="#hugo-theme을-clone하여-변경사항을-remote-repository로-관리하는-방법">hugo theme을 clone하여, 변경사항을 remote repository로 관리하는 방법</a></li>
+    <li><a href="#usernamegithubio-저장소를-submodule로-추가">username.github.io 저장소를 submodule로 추가</a></li>
+    <li><a href="#github-blog-remote-repository-연결">GitHub blog remote repository 연결</a></li>
+    <li><a href="#포스팅할-글을-작성해준다">포스팅할 글을 작성해준다.</a></li>
+    <li><a href="#github에-올리기-전에-확인">GitHub에 올리기 전에 확인</a></li>
+    <li><a href="#build-후-github으로-배포">build 후, GitHub으로 배포</a></li>
+    <li><a href="#usernamegithubio로-접속하여-확인">username.github.io로 접속하여 확인</a></li>
+    <li><a href="#블로그를-구축하며">블로그를 구축하며&hellip;</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/blog/" style="background-color: #2a9d8f; color: #fff;">
+                blog
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/hugo-github-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95/">Hugo, GitHub 블로그 구축</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Hugo, GitHub으로 github.io 도메인을 가지는 블로그를 구축
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 16, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 분 정도
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>windows 10 환경에서 작업.</p>
+<h2 id="hugo">Hugo</h2>
+<p>Hugo는 Static Site Generators 중 하나이고 Go lang으로 작성되어 있다.  <br>
+Hugo를 선택한 이유는 Go lang으로 되어 있기 때문이다.</p>
+<p>공식 사이트:  <a class="link" href="https://gohugo.io/"  target="_blank" rel="noopener"
+    >Hugo</a></p>
+<h3 id="hugo-설치">Hugo 설치</h3>
+<p>공식 설치 문서 <a class="link" href="https://gohugo.io/getting-started/installing/#windows"  target="_blank" rel="noopener"
+    >Hugo install-Windows</a>을 참고해서 설치를 진행한다.</p>
+<ul>
+<li>다운로드 저장소 <a class="link" href="https://github.com/gohugoio/hugo/releases"  target="_blank" rel="noopener"
+    >Hugo Release</a>에서 본인 pc 설정에 맞는 버전을 다운로드 한다.<br>
+<em>문서에는 특정 경로에 설치할 것을 추천하지만 어떤 경로든 상관 없을것 같다</em><br>
+<em>내가 선택한 theme이 extended 버전을 필요로하는 경우가 있다</em></li>
+<li>가장 중요한 것은 <strong>환경 변수 설정</strong>을 해주는 것이다.<br>
+문서 <a class="link" href="https://gohugo.io/getting-started/installing/#for-windows-10-users"  target="_blank" rel="noopener"
+    >Hugo install-Windows-set-variables</a> 참고한다.</li>
+</ul>
+<p><a class="link" href="/blog/blog001.png" ><img src="/blog/blog001.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Environment Variables"
+	
+	
+></a></p>
+<ul>
+<li>hugo 설치 확인
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">hugo</span> <span class="n">version</span>
+</span></span><span class="line"><span class="cl"><span class="n">hugo</span> <span class="n">v0</span><span class="p">.</span><span class="py">100</span><span class="p">.</span><span class="py">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="github-git">GitHub, Git</h2>
+<h3 id="github-가입--repository-생성">GitHub 가입 &amp; repository 생성</h3>
+<ul>
+<li>GitHub 가입한다. <a class="link" href="https://github.com/"  target="_blank" rel="noopener"
+    >GitHub</a></li>
+<li>Repository 2개 생성
+<ul>
+<li>username/blog: 블로그 프로젝트 소스코드가 저장될 저장소.</li>
+<li>username/username.github.io: 실제 블로그가 운영될 저장소. 이 저장소 기반으로 블로그가 운영된다. <em>이 저장소에 저장하는 것으로 블로그 배포된다고 볼 수 있음.</em><br>
+<strong>&lsquo;username.github.io&rsquo; 저장소는 public으로 설정</strong>한다. private 저장소로 지정했었는데, 안 됐었던 경험이 있다. 이유는 접근권한이 private이라서 라고 추측하는 중.</li>
+</ul>
+</li>
+</ul>
+<h3 id="git-설치">Git 설치</h3>
+<p>Git 공식 사이트: <a class="link" href="https://git-scm.com/"  target="_blank" rel="noopener"
+    >Git</a><br>
+git cli(command line interface)로 git을 명령어를 이용해서 git을 사용하게 해준다.<br>
+<em>본인 pc 설정에 맞는 버전 설치</em></p>
+<ul>
+<li>Git 설치 확인
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">git</span> <span class="n">version</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">version</span> <span class="mf">2.31</span><span class="p">.</span><span class="py">1</span><span class="p">.</span><span class="py">windows</span><span class="p">.</span><span class="py">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="hugo-blog-생성">hugo blog 생성</h2>
+<p><a class="link" href="https://gohugo.io/getting-started/quick-start/"  target="_blank" rel="noopener"
+    >Hugo quickstart</a>를 참고한다.</p>
+<ul>
+<li>hugo로 블로그 사이트(프로젝트에 해당)를 생성한다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">hugo</span> <span class="n">new</span> <span class="n">site</span> <span class="n">blog</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><img src="/blog/hugo-new-site-result.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="hugo new site result"
+	
+	
+></p>
+<ul>
+<li>blog로 작업디렉토리를 변경 후, git 로컬저장소로 초기화한다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">cd </span><span class="n">blog</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">git</span> <span class="n">init</span>
+</span></span><span class="line"><span class="cl"><span class="n">Initialized</span> <span class="n">empty</span> <span class="n">Git</span> <span class="n">repository</span> <span class="k">in</span> <span class="n">C:</span><span class="p">/</span><span class="n">Users</span><span class="p">/</span><span class="n">blog</span><span class="p">/.</span><span class="n">git</span><span class="p">/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="hugo-theme을-clone하여-변경사항을-remote-repository로-관리하는-방법">hugo theme을 clone하여, 변경사항을 remote repository로 관리하는 방법</h2>
+<ul>
+<li><a class="link" href="https://themes.gohugo.io/"  target="_blank" rel="noopener"
+    >Hugo-themes</a>에서 원하는 테마를 고른다. <em>고른 테마의 <strong>문서</strong>도 잘 읽어본다</em>
+<ul>
+<li>hugo-theme을 submodule로 추가할 경우: <a class="link" href="https://insightous.github.io/p/submodule-%EC%B6%94%EA%B0%80%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95/" >submodule 추가하는 방법</a></li>
+</ul>
+</li>
+<li>hugo theme을 clone
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">CaiJimmy</span><span class="p">/</span><span class="nb">hugo-theme</span><span class="n">-stack</span><span class="p">/</span> <span class="n">themes</span><span class="p">/</span><span class="nb">hugo-theme</span><span class="n">-stack</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>theme의 변경 사항을 관리할 repository를 생성: <code>myusername/hugo-theme-stack</code></li>
+<li>submodule 디렉토리에서 remote repository를 추가한다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="nb">pwd
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span><span class="p">~/</span><span class="n">blog</span><span class="p">/</span><span class="n">themes</span><span class="p">/</span><span class="nb">hugo-theme</span><span class="n">-stack</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">rename</span> <span class="n">origin</span> <span class="n">caijimmy</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="err">:</span><span class="n">myusername</span><span class="p">/</span><span class="nb">hugo-theme</span><span class="n">-stack</span><span class="p">.</span><span class="py">git</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li><code>git remote -v</code>로 remote repository 확인
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">&gt;</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">-v</span>
+</span></span><span class="line"><span class="cl"><span class="n">caijimmy</span>        <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">CaiJimmy</span><span class="p">/</span><span class="nb">hugo-theme</span><span class="n">-stack</span><span class="p">.</span><span class="py">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">caijimmy</span>        <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">CaiJimmy</span><span class="p">/</span><span class="nb">hugo-theme</span><span class="n">-stack</span><span class="p">.</span><span class="py">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">origin</span>  <span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="err">:</span><span class="n">myusername</span><span class="p">/</span><span class="nb">hugo-theme</span><span class="n">-stack</span><span class="p">.</span><span class="py">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">origin</span>  <span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="err">:</span><span class="n">myusername</span><span class="p">/</span><span class="nb">hugo-theme</span><span class="n">-stack</span><span class="p">.</span><span class="py">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>branch 생성
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">git</span> <span class="n">branch</span> <span class="n">-M</span> <span class="n">main</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>내가 관리하는 theme(<code>myusername/hugo-theme-stack</code>)에 변경사항을 add/commit/push 한다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">&#34;commit message.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">main</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>blog 디렉토리에서 내가 관리하는 theme(<code>myusername/hugo-theme-stack</code>)을 submodule로 추가한다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">git</span> <span class="n">submodule</span> <span class="n">add</span> <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">myusername</span><span class="p">/</span><span class="nb">hugo-theme</span><span class="n">-stack</span><span class="p">/</span> <span class="n">themes</span><span class="p">/</span><span class="nb">hugo-theme</span><span class="n">-stack</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>hugo theme을 submodule로 추가했는데, 변경하고 싶을 경우: <a class="link" href="https://insightous.github.io/p/%EC%99%B8%EB%B6%80-submodule%EC%9D%84-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B3%A0-remote-repository%EB%A1%9C-%EA%B4%80%EB%A6%AC/" >외부 submodule을 변경하고 remote repository로 관리</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="usernamegithubio-저장소를-submodule로-추가">username.github.io 저장소를 submodule로 추가</h2>
+<ul>
+<li>public 디렉토리를 먼저 삭제 한다. public으로 username.github.io 저장소를 클론해오는데 디렉토리가 이미 존재할 경우 정상 동작하지 않는다.</li>
+<li>username.github.io submodule 추가시에는 꼭 <strong>ssh 주소를 사용</strong>해야 한다. -&gt; https로 클론할 경우 당장 에러가 발생하지 않지만, 블로그를 접속시 404에러가 발생한다.
+<ul>
+<li>GitHub ssh 클론에 필요한 방법: <a class="link" href="https://insightous.github.io/p/ssh%EB%A1%9C-github-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0/" >ssh로 GitHub 연결 &amp; 여러 계정 사용</a></li>
+</ul>
+</li>
+<li>username.github.io submodule은 main branch를 설정해서 submodule을 추가한다. (작업을 push 할 예정이므로 branch 설정)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">git</span> <span class="n">submodule</span> <span class="n">add</span> <span class="n">-b</span> <span class="n">main</span> <span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="err">:</span><span class="n">username</span><span class="p">/</span><span class="n">username</span><span class="p">.</span><span class="py">github</span><span class="p">.</span><span class="py">io</span><span class="p">.</span><span class="py">git</span> <span class="n">public</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>remote repository가 빈 repository 라서, 에러가 발생한다.</li>
+<li><code>.gitmodules</code>파일을 확인하면 submodule이 추가되지 않은 것을 확인할 수 있다.</li>
+<li>public 디렉토리로 이동하여 <code>git remote -v</code>로 원격 저장소(여기서는 username.github.io)로 remote를 확인할 수 있다. README.md 파일을 생성하고 add/commit/push 하여 빈 repository 상태를 벗어나게 해준다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="n">public</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">remote</span> <span class="n">-v</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo </span><span class="s2">&#34;# username.github.io&#34;</span> <span class="p">&gt;&gt;</span> <span class="n">README</span><span class="p">.</span><span class="nb">md
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span><span class="n">git</span> <span class="n">add</span> <span class="n">README</span><span class="p">.</span><span class="nb">md
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">&#34;first commit&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">push</span> <span class="n">-u</span> <span class="n">origin</span> <span class="n">main</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><em>로컬 repository main 브랜치에서 remote repository origin 브랜치로 push 해준다. 즉 로컬에서 작업하는 브랜치는 main이 된다.</em></li>
+<li>다시 blog 디렉토리로 돌아와 username.github.io를 submodule로 추가해준다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">..</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">submodule</span> <span class="n">add</span> <span class="n">-b</span> <span class="n">main</span> <span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="err">:</span><span class="n">username</span><span class="p">/</span><span class="n">username</span><span class="p">.</span><span class="py">github</span><span class="p">.</span><span class="py">io</span><span class="p">.</span><span class="py">git</span> <span class="n">public</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li><code>.gitmodules</code>파일을 확인하여 submodule이 추가된 것을 확인한다.</li>
+</ul>
+<h2 id="github-blog-remote-repository-연결">GitHub blog remote repository 연결</h2>
+<p><em>repository를 생성하면 처음 나오는 Quick setup을 참고하자</em></p>
+<ul>
+<li>blog 디렉토리(프로젝트)에서 작업할 branch로 main을 설정해준다
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">git</span> <span class="n">branch</span> <span class="n">-M</span> <span class="n">main</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>로컬 저장소 blog와 blog remote repository 연결해준다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="nv">@github</span><span class="p">.</span><span class="n">com</span><span class="err">:</span><span class="n">username</span><span class="p">/</span><span class="n">blog</span><span class="p">.</span><span class="py">git</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><em>https 연결로 가능하지만 위에서 ssh 연결 설정을 이미 해두어 ssh로 연결해준다</em></li>
+</ul>
+<h2 id="포스팅할-글을-작성해준다">포스팅할 글을 작성해준다.</h2>
+<ul>
+<li>hugo quick-start 추천 방법
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">hugo</span> <span class="n">new</span> <span class="n">posts</span><span class="p">/</span><span class="nb">my-first</span><span class="n">-post</span><span class="p">.</span><span class="nb">md
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>보통 <code>themes/내가-선택한-테마/exampleSite</code>에 많은 예시 문서들이 있다. 이를 참고해서 문서 작성한다.</li>
+</ul>
+<h2 id="github에-올리기-전에-확인">GitHub에 올리기 전에 확인</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">hugo</span> <span class="n">server</span> <span class="n">-D</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="build-후-github으로-배포">build 후, GitHub으로 배포</h2>
+<ul>
+<li>build: 아래 명령을 실행하면 public에 파일들이 생성된다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">hugo</span> <span class="n">-t</span> <span class="n">themes</span><span class="p">-</span><span class="err">아래</span><span class="p">-</span><span class="err">테마이름</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>GitHub으로 배포: 먼저 submodule로 연결한 username.github.io로 add/commit/push를 해준다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="n">public</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">&#34;first build&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">main</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>GitHub으로 배포: 소스코드를 원격 저장소 blog로 add/commit/push 해준다.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">..</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">&#34;first build&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">main</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="usernamegithubio로-접속하여-확인">username.github.io로 접속하여 확인</h2>
+<p>시간이 좀 걸릴 수 있으니 조금 여유를 가지고 확인하자.</p>
+<h2 id="블로그를-구축하며">블로그를 구축하며&hellip;</h2>
+<ul>
+<li>블로그를 구축하면서 GitHub에 대해 더 공부할 수 있는 시간이었다.</li>
+<li>공식문서의 중요성을 다시 한번 느낄 수 있었다.-&gt; 영어 공부 열심히 해서 공식문서 읽는데 어려움이 없게 하자.</li>
+</ul>
+<p>남은 작업</p>
+<ul>
+<li>scripts로 배포 자동화하기</li>
+<li>댓글 기능 추가하기: <a class="link" href="https://insightous.github.io/p/utterances%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%8C%93%EA%B8%80-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/" >utterances로 블로그 댓글 기능 추가하기</a></li>
+</ul>
+<hr>
+<p>참고 사이트<br>
+<a class="link" href="https://github.com/Integerous/Integerous.github.io#readme"  target="_blank" rel="noopener"
+    >https://github.com/Integerous/Integerous.github.io#readme</a></p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/blog/">blog</a>
+        
+            <a href="/tags/hugo/">Hugo</a>
+        
+            <a href="/tags/github/">GitHub</a>
+        
+            <a href="/tags/git/">git</a>
+        
+            <a href="/tags/submodule/">submodule</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            마지막 수정:  Jun 26, 2022 12:39 KST
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">관련 글</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/utterances%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%8C%93%EA%B8%80-%EA%B8%B0%EB%8A%A5-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">utterances로 블로그 댓글 기능 추가하기</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%BE%B8%EB%AF%B8%EA%B8%B0-%EB%A6%AC%EC%86%8C%EC%8A%A4/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">블로그 꾸미기 리소스</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/ssh%EB%A1%9C-github-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ssh로 GitHub 연결하기</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/docker-docker-compose-%EC%84%A4%EC%B9%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker, Docker Compose 설치</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/percona-mysql-%EC%84%A4%EC%B9%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Percona MySQL 설치</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="insightous/comment"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2022 - 
+        
+        2023 공부하고 기록하고
+    </section>
+    
+    <section class="powerby">
+        <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>로 만듦 <br />
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>의 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 테마 사용 중
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

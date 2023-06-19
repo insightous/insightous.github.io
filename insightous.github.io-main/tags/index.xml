@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tags on 공부하고 기록하고</title>
+        <link>https://insightous.github.io/tags/</link>
+        <description>Recent content in Tags on 공부하고 기록하고</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Thu, 26 Jan 2023 12:47:29 +0900</lastBuildDate><atom:link href="https://insightous.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>blog</title>
+        <link>https://insightous.github.io/tags/blog/</link>
+        <pubDate>Thu, 26 Jan 2023 12:47:29 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/blog/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Docker</title>
+        <link>https://insightous.github.io/tags/docker/</link>
+        <pubDate>Mon, 04 Jul 2022 10:07:39 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/docker/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Docker Compose</title>
+        <link>https://insightous.github.io/tags/docker-compose/</link>
+        <pubDate>Mon, 04 Jul 2022 10:07:39 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/docker-compose/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>MySQL</title>
+        <link>https://insightous.github.io/tags/mysql/</link>
+        <pubDate>Mon, 04 Jul 2022 10:07:39 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/mysql/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Percona MySQL</title>
+        <link>https://insightous.github.io/tags/percona-mysql/</link>
+        <pubDate>Mon, 04 Jul 2022 10:07:39 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/percona-mysql/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Percona</title>
+        <link>https://insightous.github.io/tags/percona/</link>
+        <pubDate>Thu, 30 Jun 2022 16:42:13 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/percona/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>CentOS</title>
+        <link>https://insightous.github.io/tags/centos/</link>
+        <pubDate>Thu, 30 Jun 2022 14:00:56 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/centos/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>VirtualBox</title>
+        <link>https://insightous.github.io/tags/virtualbox/</link>
+        <pubDate>Thu, 30 Jun 2022 14:00:56 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/virtualbox/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Visual Studio Code</title>
+        <link>https://insightous.github.io/tags/visual-studio-code/</link>
+        <pubDate>Tue, 28 Jun 2022 15:21:25 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/visual-studio-code/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>VS Code</title>
+        <link>https://insightous.github.io/tags/vs-code/</link>
+        <pubDate>Tue, 28 Jun 2022 15:21:25 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/vs-code/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>vscode</title>
+        <link>https://insightous.github.io/tags/vscode/</link>
+        <pubDate>Tue, 28 Jun 2022 15:21:25 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/vscode/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>git</title>
+        <link>https://insightous.github.io/tags/git/</link>
+        <pubDate>Mon, 27 Jun 2022 11:24:37 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/git/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>GitHub</title>
+        <link>https://insightous.github.io/tags/github/</link>
+        <pubDate>Mon, 27 Jun 2022 11:24:37 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/github/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Hugo</title>
+        <link>https://insightous.github.io/tags/hugo/</link>
+        <pubDate>Mon, 27 Jun 2022 11:24:37 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/hugo/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>utterances</title>
+        <link>https://insightous.github.io/tags/utterances/</link>
+        <pubDate>Mon, 27 Jun 2022 11:24:37 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/utterances/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>ssh</title>
+        <link>https://insightous.github.io/tags/ssh/</link>
+        <pubDate>Fri, 17 Jun 2022 16:24:29 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/ssh/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>submodule</title>
+        <link>https://insightous.github.io/tags/submodule/</link>
+        <pubDate>Thu, 16 Jun 2022 17:20:29 +0900</pubDate>
+        
+        <guid>https://insightous.github.io/tags/submodule/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

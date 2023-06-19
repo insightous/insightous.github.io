@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Study and Log</title>
+        <link>https://insightous.github.io/en/</link>
+        <description>Recent content on Study and Log</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Tue, 14 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://insightous.github.io/en/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>About</title>
+        <link>https://insightous.github.io/en/about/</link>
+        <pubDate>Tue, 14 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://insightous.github.io/en/about/</guid>
+        <description>&lt;p&gt;For Study and Log.&lt;br&gt;
+email: &lt;a class=&#34;link&#34; href=&#34;mailto:insightous761@gmail.com&#34; &gt;insightous761@gmail.com&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Archives</title>
+        <link>https://insightous.github.io/en/archives/</link>
+        <pubDate>Tue, 14 Jun 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://insightous.github.io/en/archives/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Search</title>
+        <link>https://insightous.github.io/en/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://insightous.github.io/en/search/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>
